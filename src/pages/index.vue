@@ -1,4 +1,6 @@
 <script setup lang="ts" generic="T extends any, O extends any">
+import { animate } from 'motion'
+
 defineOptions({
   name: 'IndexPage',
 })
@@ -10,10 +12,22 @@ function go() {
   if (name.value)
     router.push(`/hi/${encodeURIComponent(name.value)}`)
 }
+
+onMounted(() => {
+  animate(
+    '.demo',
+    { transform: 'rotate(45deg)' },
+    { duration: 0.5 },
+  )
+})
 </script>
 
 <template>
-  <div>
+  <div flex flex-col items-center justify-center>
+    <div
+      h-50px w-50px rounded bg-green
+      class="demo"
+    />
     <div i-carbon-campsite inline-block text-4xl />
     <p>
       <a rel="noreferrer" href="https://github.com/antfu/vitesse-lite" target="_blank">
